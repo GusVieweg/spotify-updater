@@ -2,7 +2,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from selenium import webdriver
-import spotify_creds
 import time
 import os
 
