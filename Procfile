@@ -1,1 +1,1 @@
-worker: python update_spotify.py
+clock: python clock.py
