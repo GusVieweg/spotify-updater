@@ -1,2 +1,3 @@
 ./spotify_creds.py
 ./geckodriver.log
+.env
