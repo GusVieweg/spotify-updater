@@ -4,6 +4,8 @@ load_dotenv()
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+from pyvirtualdisplay import Display
+
 import time
 import os
 
@@ -15,6 +17,9 @@ class SpotifyUpdater:
         self.SPOTIFY_SONG_URL = os.environ['SPOTIFY_SONG_URI']
 
     def update_feature_song(self):
+        display = Display(visible=0, size=(1024, 768))
+        display.start()
+
         # Fire up a browser
         fb = FirefoxBinary(os.environ['FIREFOX_PATH'])
         caps = DesiredCapabilities().FIREFOX
