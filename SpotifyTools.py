@@ -2,10 +2,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from selenium import webdriver
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
-from pyvirtualdisplay import Display
-
 import time
 import os
 
@@ -17,14 +13,13 @@ class SpotifyUpdater:
         self.SPOTIFY_SONG_URL = os.environ['SPOTIFY_SONG_URI']
 
     def update_feature_song(self):
-        display = Display(visible=0, size=(1024, 768))
-        display.start()
-
         # Fire up a browser
-        fb = FirefoxBinary(os.environ['FIREFOX_PATH'])
-        caps = DesiredCapabilities().FIREFOX
-        caps['marionette'] = False
-        browser = webdriver.Firefox(firefox_binary=fb, capabilities=caps, executable_path=os.environ['GECKODRIVER_PATH'])
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.binary_location = os.environ['CHROME_PATH']
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument("--no-sandbox")
+        browser = webdriver.Chrome(executable_path=os.environ['CHROMEDRIVER_PATH'], options=chrome_options)
         browser.get('https://accounts.spotify.com/en/login?continue=https:%2F%2Fartists.spotify.com%2F')
 
         # Log in
