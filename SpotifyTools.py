@@ -14,7 +14,7 @@ class SpotifyUpdater:
 
     def update_feature_song(self):
         # Fire up a browser
-        browser = webdriver.Firefox()
+        browser = webdriver.Firefox(executable_path=os.environ['GECKODRIVER_PATH'])
         browser.get('https://accounts.spotify.com/en/login?continue=https:%2F%2Fartists.spotify.com%2F')
 
         # Log in
