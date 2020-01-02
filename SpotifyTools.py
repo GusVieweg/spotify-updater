@@ -16,7 +16,7 @@ class SpotifyUpdater:
 
     def update_feature_song(self):
         # Fire up a browser
-        fb = FirefoxBinary(os.envrion['FIREFOX_PATH'])
+        fb = FirefoxBinary(os.environ['FIREFOX_PATH'])
         caps = DesiredCapabilities().FIREFOX
         caps['marionette'] = False
         browser = webdriver.Firefox(firefox_binary=fb, capabilities=caps, executable_path=os.environ['GECKODRIVER_PATH'])
