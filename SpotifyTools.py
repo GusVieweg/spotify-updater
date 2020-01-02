@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from selenium import webdriver
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 import time
 import os
 
@@ -14,7 +15,9 @@ class SpotifyUpdater:
 
     def update_feature_song(self):
         # Fire up a browser
-        browser = webdriver.Firefox(executable_path=os.environ['GECKODRIVER_PATH'])
+        caps = DesiredCapabilities().FIREFOX
+        caps['marionette'] = False
+        browser = webdriver.Firefox(capabilities=caps, executable_path=os.environ['GECKODRIVER_PATH'])
         browser.get('https://accounts.spotify.com/en/login?continue=https:%2F%2Fartists.spotify.com%2F')
 
         # Log in
